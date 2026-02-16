@@ -7,6 +7,9 @@
         <router-link to="/rooms" class="nav-btn">Zimmerverwaltung</router-link>
       </div>
     </nav>
+    <nav class="legal-notes">
+      <p>Legal Notes: Wenn ich mit diesem Programm reich werde, spendiere ich Christopher Fullarton ein Bier</p>
+    </nav>
 
     <main class="content">
       <router-view />
@@ -25,6 +28,10 @@
 .nav-btn {
   margin-left: 10px; padding: 8px 15px; color: white;
   text-decoration: none; background: #42b883; border-radius: 4px;
+}
+
+.legal-notes {
+  position: fixed; bottom: 0; left: 0; width: 100%
 }
 .content { margin-top: 80px; padding: 2rem; text-align: center; }
 </style>
