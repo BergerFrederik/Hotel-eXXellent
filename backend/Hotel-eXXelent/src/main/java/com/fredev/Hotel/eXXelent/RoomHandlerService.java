@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 // The RoomHandler handles every request related to processing and transforming hotel room data
 @Service
-public class RoomHandler
+public class RoomHandlerService
 {
     @Autowired
     private HotelRoomRepository hotelRoomRepository;

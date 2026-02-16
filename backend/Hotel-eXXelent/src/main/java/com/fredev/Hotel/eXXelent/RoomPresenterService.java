@@ -9,7 +9,7 @@ import java.util.List;
 // The RoomPresenter handles every request related to displaying hotel room information
 
 @Service
-public class RoomPresenter
+public class RoomPresenterService
 {
     @Autowired
     private HotelRoomRepository hotelRoomRepository;

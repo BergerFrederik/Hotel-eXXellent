@@ -15,12 +15,12 @@ import java.util.List;
 )
 public class RoomController
 {
-    private final RoomHandler roomHandler;
+    private final RoomHandlerService roomHandler;
 
-    private final RoomPresenter roomPresenter;
+    private final RoomPresenterService roomPresenter;
 
     // constructor to be able to use finals
-    public RoomController(RoomHandler roomHandler, RoomPresenter roomPresenter)
+    public RoomController(RoomHandlerService roomHandler, RoomPresenterService roomPresenter)
     {
         this.roomHandler = roomHandler;
         this.roomPresenter = roomPresenter;
