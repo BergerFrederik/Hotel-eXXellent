@@ -3,8 +3,10 @@ package com.fredev.Hotel.eXXelent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+
+// The RoomPresenter handles every request related to displaying hotel room information
 
 @Service
 public class RoomPresenter
@@ -12,28 +14,25 @@ public class RoomPresenter
     @Autowired
     private HotelRoomRepository hotelRoomRepository;
 
-    //Hotelzimmer mittels Zimmernummer abfragen
-    public HotelRoom showHotelRoomByID(int id)
-    {
-        return hotelRoomRepository.findById(id).orElse(null);
-    }
-
-    //Hotelzimmer in einer Liste anzeigen
     public List<HotelRoom> showAllRooms()
     {
         return hotelRoomRepository.findAll();
     }
 
-    //Hotelzimmer filtern
-
-    public List<HotelRoom> filterHotelRooms(RoomFilterDTO filterData)
+    public List<HotelRoom> filterHotelRooms(RoomInformationDTO filterData)
     {
+        // prevention of overriding data with "null"
         HotelRoom precursor = new HotelRoom();
         precursor.setRoomNumber(filterData.getRoomNumber());
         precursor.setRoomSize(filterData.getRoomSize());
         precursor.setHasMinibar(filterData.hasMinibar());
-        precursor.setOccupied(filterData.isOccupied());
+        precursor.setOccupied(filterData.getOccupied());
 
         return hotelRoomRepository.findAll(Example.of(precursor));
+    }
+
+    public String getNumFreeRooms()
+    {
+        return String.valueOf(hotelRoomRepository.countFreeRooms());
     }
 }

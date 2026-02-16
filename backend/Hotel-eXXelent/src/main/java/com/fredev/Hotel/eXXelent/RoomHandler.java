@@ -3,15 +3,13 @@ package com.fredev.Hotel.eXXelent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// The RoomHandler handles every request related to processing and transforming hotel room data
 @Service
 public class RoomHandler
 {
     @Autowired
     private HotelRoomRepository hotelRoomRepository;
 
-    //create new room
-    //edit room via roomnumber
-    //edit or delete room
     public void deleteHotelRoom(int id)
     {
         hotelRoomRepository.deleteById(id);
@@ -22,24 +20,24 @@ public class RoomHandler
         hotelRoomRepository.save(hotelRoom);
     }
 
-    public void editExistingRoom(RoomFilterDTO testDTO)
+    public void editExistingRoom(RoomInformationDTO roomInformationDTO)
     {
-        HotelRoom roomToEdit = hotelRoomRepository.findById(testDTO.getRoomNumber())
-                .orElseThrow(() -> new RuntimeException("Zimmer nicht gefunden"));
+        HotelRoom roomToEdit = hotelRoomRepository.findById(roomInformationDTO.getRoomNumber())
+                .orElseThrow(() -> new RuntimeException("Room not found")); // Needed to use the data from the optional
 
-        if (testDTO.getRoomSize() != null)
+        if (roomInformationDTO.getRoomSize() != null) // preventing to override data with "null" when no change was chosen
         {
-            roomToEdit.setRoomSize(testDTO.getRoomSize());
+            roomToEdit.setRoomSize(roomInformationDTO.getRoomSize());
         }
 
-        if (testDTO.hasMinibar() != null)
+        if (roomInformationDTO.hasMinibar() != null) // preventing to override data with "null" when no change was chosen
         {
-            roomToEdit.setHasMinibar(testDTO.hasMinibar());
+            roomToEdit.setHasMinibar(roomInformationDTO.hasMinibar());
         }
 
-        if (testDTO.isOccupied() != null)
+        if (roomInformationDTO.getOccupied() != null) // preventing to override data with "null" when no change was chosen
         {
-            roomToEdit.setOccupied(testDTO.isOccupied());
+            roomToEdit.setOccupied(roomInformationDTO.getOccupied());
         }
 
         hotelRoomRepository.save(roomToEdit);

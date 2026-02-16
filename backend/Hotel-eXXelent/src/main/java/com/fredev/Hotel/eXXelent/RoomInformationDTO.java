@@ -1,11 +1,12 @@
 package com.fredev.Hotel.eXXelent;
 
-public class RoomFilterDTO
+// used to transfer basic room information between front- and backend
+public class RoomInformationDTO
 {
     private Integer roomNumber;
     private RoomSize roomSize;
     private Boolean hasMinibar;
-    private Boolean isOccupied;
+    private Boolean occupied;
 
     public Integer getRoomNumber() {
         return roomNumber;
@@ -28,13 +29,16 @@ public class RoomFilterDTO
         this.hasMinibar = hasMinibar;
     }
 
-    public Boolean isOccupied() {
-        return isOccupied;
+    public Boolean getOccupied() {
+        return occupied;
     }
     public void setOccupied(Boolean occupied) {
-        isOccupied = occupied;
+        this.occupied = occupied;
     }
-    public RoomFilterDTO()
+
+
+    // Jackson creates an empty instance of RoomInformationDTO first and fills it with data afterward
+    public RoomInformationDTO()
     {
 
     }
